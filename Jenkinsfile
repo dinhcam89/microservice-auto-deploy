@@ -6,11 +6,6 @@ pipeline {
   }
   agent any
   stages {
-    stage('Checkout Source') {
-      steps {
-        git 'https://github.com/dinhcam89/microservice-auto-deploy'
-      }
-    }
     stage('Build image') {
       steps{
         script {
