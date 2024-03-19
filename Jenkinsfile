@@ -14,7 +14,12 @@ pipeline {
         }
         stage('Login') {
             steps { 
-                sh 'echo $DOCKERHB_CREDENTIALS_PSW | echo $DOCKERHB_CREDENTIALS_USR | docker login -u $DOCKERHB_CREDENTIALS_USR -p $DOCKERHB_CREDENTIALS_PSW'	
+                script {
+                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+                        // Use Docker Hub credentials to login
+                        docker.login("${DOCKERHUB_CREDENTIALS_USR}", "${DOCKERHUB_CREDENTIALS_PSW}")
+                    }
+                }
             }
         }
         stage('Docker Tag') {
