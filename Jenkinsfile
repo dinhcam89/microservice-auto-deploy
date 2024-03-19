@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Docker Tag') {
             steps {
-                sh "docker tag ${dockerImageName} ${dockerImageName}"
+                sh "docker tag react-app dinhcam89/react-app"
             }
         }
         stage('Push') {
