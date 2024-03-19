@@ -13,16 +13,27 @@ pipeline {
         }
       }
     }
-    
-    stage('Pushing Image') {
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS ) {
-            dockerImage.push("latest")
-          }
-        }
-      }
-    }
+    stage('Login') {
+
+			steps {	
+				sh 'echo $DOCKERHB_CREDENTIALS_PSW | echo $DOCKERHB_CREDENTIALS_USR | docker login -u $DOCKERHB_CREDENTIALS_USR -p $DOCKERHB_CREDENTIALS_PSW'	
+				}
+		}
+    stage('Docker Tag') {
+
+			steps {
+				sh 'docker tag react-app" dinhcam89/react-app"'
+			}
+		}
+
+		stage('Push') {
+
+    		// some block
+			steps{		
+				sh 'docker push dinhcam89/react-app"'					
+			}
+		
+		}
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
