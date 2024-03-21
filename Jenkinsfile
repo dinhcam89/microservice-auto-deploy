@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dinhcam89-dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         dockerImageName = "dinhcam89/react-app" // Adjusted variable name to follow convention
     }
     agent any
