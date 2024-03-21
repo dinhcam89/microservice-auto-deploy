@@ -55,7 +55,7 @@ pipeline{
         stage('Deploy with Minikube') {
             steps {
                 sh 'minikube start' // Start Minikube
-                sh 'kubectl apply -f kube2' // Create deployment
+                sh 'kubectl apply -f deployment.yaml' // Create deployment
                 sh 'minikube service react' // Open service in default browser
             }
         }
