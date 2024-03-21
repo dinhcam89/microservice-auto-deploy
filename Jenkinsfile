@@ -55,9 +55,8 @@ pipeline{
         stage('Deploy with Minikube') {
             steps {
                 sh 'minikube start' // Start Minikube
-                sh 'kubectl create deployment react-app --image=dinhcam89/react-app:latest' // Create deployment
-                sh 'kubectl expose deployment react-app --type=NodePort --port=80' // Expose deployment
-                sh 'minikube service react-app' // Open service in default browser
+                sh 'kubectl apply -f kube2' // Create deployment
+                sh 'minikube service react' // Open service in default browser
             }
         }
 
